@@ -1,41 +1,48 @@
 module Util where
+import System.IO
+import Data.List 
 
-import System.IO.Unsafe
-import Database.SQLite.Simple
+lerString :: IO String
+lerString = do
+    x <- getLine
+    return x
 
+--opVaga
+geraLista :: String -> [[String]] -> [[String]]
+geraLista _ [] = []
+geraLista v (x:xs) | (aux v x) == True = geraLista v xs
+                   | otherwise = x:geraLista v xs
 
+aux :: String -> [String] -> Bool
+aux v (x:xs) = (v == x)
 
-executeBD :: ToRow q => String -> q -> IO ()
-executeBD acao propriedades = do
-   conn <- open "./data/mercadoFacil.db"
-   let pesquisa = read $ show acao :: Query
-   execute conn pesquisa propriedades
-   close conn
-
-   
-queryBD :: FromRow r => String -> IO [r]
-queryBD query = do
-   conn <- open "./data/mercadoFacil.db"
-   let pesquisa = read $ show query :: Query;
-   query_ conn pesquisa;
-
-
-lerEntradaString :: IO String
-lerEntradaString = do
-         x <- getLine
-         return x
+--primeira
+getHead :: [[String]] -> String
+getHead [] = ""
+getHead (x:xs) = head x ++ "," ++ (x !! 1) ++ "\n" ++ getHead xs
 
 
-ehNumero :: String -> Bool
-ehNumero valor
-   | length valor == 0 = False
-   | otherwise = all (`elem` ['0'..'9']) valor
+--- FUNÇÕES QUE ESCREVEM NO ARQUIVO ---
+subrescreveHeadCliente :: String -> IO()
+subrescreveHeadCliente h = do
+    arq <- openFile "data/clientes.txt" WriteMode
+    hPutStr arq h
+    hFlush arq
+    hClose arq
 
-ehQuantidadeValida :: String -> Bool
-ehQuantidadeValida valor
-   |valor == "0" = False
-   | otherwise = ehNumero valor
 
-fromIO :: IO a -> a
-fromIO = unsafePerformIO
+subrescreveHeadMercado :: String -> IO()
+subrescreveHeadMercado n = do
 
+    arq <- openFile "data/mercados.txt" WriteMode
+    hPutStr arq n
+    hFlush arq
+    hClose arq
+
+
+
+splitLista :: (Char -> Bool) -> String -> [String]
+splitLista p s =  case dropWhile p s of
+                        "" -> []
+                        s' -> w : splitLista p s''
+                            where (w, s'') = break p s' 

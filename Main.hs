@@ -1,90 +1,133 @@
---import Admin
+
+--import Mercado
+import Text.Printf
+import Menus
+import Util
+import Data.List 
+
+
+import System.IO
 
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Redundant bracket" #-}
-opcoesMenuInicial :: IO()
-opcoesMenuInicial = do
-    putStrLn("----MERCADO FACIL----")
-    putStrLn("\nQual seu tipo de usuario?")
-    putStrLn("[1] Cliente")
-    putStrLn("[2] Mercado")
-    putStrLn("[3] Admin")
-    putStrLn("[0] Sair\n")
+
 
 cmdPrincipal :: IO()
 cmdPrincipal = do
-    opcoesMenuInicial
+    Menus.opcoesMenuInicial
     opcao <- getLine
     usuarioSelecionado opcao
 
 
 usuarioSelecionado :: String -> IO()
 usuarioSelecionado opcao 
-    |opcao == "1" = telaCromprador
-    |opcao == "2" = telaSuperMercado
+    |opcao == "1" = cmdComprador
+    |opcao == "2" = cmdMercado
     |opcao == "3" = cmdAdmin
-    |otherwise = telaSair
+    |otherwise = Menus.telaSair
 
 ----------------------MENU COMPRADOR--------------------------------------------    
-telaCromprador :: IO()
-telaCromprador = do
-    putStrLn("----MERCADO FACIL|Comprador|----")
-    putStrLn("\nO que deseja fazer?")
-    putStrLn("[1] Buscar um produto")
-    putStrLn("[2] Ver superMercados Disponiveis")
-    putStrLn("[3] Buscar SuperMercado mais Economico")
-    putStrLn("[0] Sair\n")
-----------------------MENU MERCADO--------------------------------------------
-telaSuperMercado :: IO()
-telaSuperMercado = do
-    putStrLn("----MERCADO FACIL|Super-Mercado|----")
-    putStrLn("\nO que deseja fazer?")
-    putStrLn("[1] Cadastrar um Produto")
-    putStrLn("[2] Buscar um produto")
-    putStrLn("[3] Aplicar desconto em Produto")
-    putStrLn("[4] Aplicar desconto em Secao")
-    putStrLn("[5] Comparar precos")
-    putStrLn("[0] Sair\n")
+cmdComprador :: IO()
+cmdComprador = do
+    Menus.telaComprador
+    compradorSelecionado "1"
 
+compradorSelecionado :: String -> IO()
+compradorSelecionado opcao 
+    |opcao == "1" = putStrLn("----Buscando Produto----")
+    |opcao == "2" = putStrLn("----Listando Mercados----")
+    |opcao == "3" = putStrLn("----Buscando Mercado Economico----")
+    |otherwise = cmdPrincipal
+----------------------MENU MERCADO--------------------------------------------
+
+cmdMercado :: IO()
+cmdMercado = do
+    Menus.telaMercado
+    opcaoAdm <- getLine
+    print opcaoAdm
+
+mercadoSelecionado :: String -> IO()
+mercadoSelecionado opcao 
+    |opcao == "1" = putStrLn("----Cadastrando um Produto....----")
+    |opcao == "2" = putStrLn("----Buscando Produto......----")
+    |opcao == "3" = putStrLn("----Aplicar desconto em Produto.....----")
+    |opcao == "4" = putStrLn("----Aplicar desconto em Secao....----")
+    |opcao == "5" = putStrLn("----Comparar precos....----")
+    |otherwise = cmdPrincipal
 ---------------------MENU ADMIN---------------------------------------------
 
-opcoesMenuAdmin :: IO()
-opcoesMenuAdmin = do
-    putStrLn("----MERCADO FACIL|Administrador|----")
-    putStrLn("\nO que deseja fazer?")
-    putStrLn("[1] Cadastrar um SuperMercado")
-    putStrLn("[2] Cadastrar um Comprador")
-    putStrLn("[3] Remover um SuperMercado")
-    putStrLn("[4] Remover um Comprador")
-    putStrLn("[0] Sair\n")   
 
 cmdAdmin :: IO()
 cmdAdmin = do
-    opcoesMenuAdmin
+    Menus.opcoesMenuAdmin
     opcaoAdm <- getLine
-    print opcaoAdm
---    adminSelecionado opcaoAdm
+    adminSelecionado opcaoAdm
 
---adminSelecionado :: String -> IO()
---adminSelecionado opcaoAdm
---    |opcao == "1" = Admin.cadastraCliente
---    |opcao == "2" = Admin.cadastraSuperMercado
---    |opcao == "3" = removeSuperMercado
+adminSelecionado :: String -> IO()
+adminSelecionado opcao
+    |opcao == "1" = telaCadastraMercado
+    |opcao == "2" = telaCadastraCliente
+    |opcao == "3" = telaRemoveMercado
 --    |opcao == "2" = removeCromprador
---    |otherwise = telaSair
+    |otherwise = cmdPrincipal
+
+---------------------CADASTRO DE MERCADO---------------------------------------------
+
+telaCadastraMercado :: IO()
+telaCadastraMercado = do
+    Menus.cadastrarNomeMercado
+    nome <- Util.lerString
+
+    Menus.cadastrarCnpj
+    cnpj <- Util.lerString
+
+    let mercado = cnpj ++ "," ++ nome ++ "\n"
+    appendFile "data/mercados.txt" (mercado)
+
+    Menus.operacaoSucesso
+    cmdAdmin
+
+--REMOVENDO MERCADO
+getLines :: Handle -> IO [String]
+getLines m = hGetContents m >>= return . lines
 
 
+telaRemoveMercado :: IO()
+telaRemoveMercado = do
 
---selecaoAdmin :: String -> IO()
---selecaoAdmin opcao 
---   |opcao == "1" = cadastraSuperMercado
---    |opcao == "2" = cadastraComprador
---    |pcao == "3" = removeSuperMercado
---    |opcao == "4" = removeComprador
---    |opcao == "4" = listaMercados
---    |opcao == "4" = listaCompradores
- --   |otherwise = telaSair
+    file <- openFile "data/mercados.txt" ReadMode
+    xs <- getLines file
+    let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
 
+    putStr("\nEscolha o CNPJ do Mercado cadastrado que deseja remover\n")
+    print (lista)
+
+    cnpj <- Util.lerString
+
+    let mercados = Util.getHead (Util.geraLista cnpj lista)
+    Util.subrescreveHeadMercado ""
+
+    appendFile "data/mercados.txt" (mercados)
+
+    Menus.operacaoSucesso
+
+    cmdAdmin
+
+
+---------------------CADASTRO DE CLIENTE---------------------------------------------
+telaCadastraCliente :: IO()
+telaCadastraCliente = do
+    Menus.cadastrarNomeCliente
+    nome <- Util.lerString
+
+    Menus.cadastrarCpf
+    cpf <- Util.lerString
+
+    let cliente = cpf ++ "," ++ nome ++ "\n"
+    appendFile "data/clientes.txt" (cliente)
+
+    Menus.operacaoSucesso
+    cmdAdmin
 
 ------------------------------------------------------------------
 telaSair :: IO()

@@ -1,8 +1,12 @@
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Redundant bracket" #-}
 module Menus where
 
-import System.IO.Unsafe
-import System.Process
-import System.Info
+--import Util
+
+--import System.IO.Unsafe
+--import System.Process
+--import System.Info
 
 opcoesMenuInicial :: IO()
 opcoesMenuInicial = do
@@ -10,22 +14,27 @@ opcoesMenuInicial = do
     putStrLn("\nQual seu tipo de usuario?")
     putStrLn("[1] Cliente")
     putStrLn("[2] Mercado")
-    putStrLn("[3] Admin")
+    putStrLn("[3] Administrador")
     putStrLn("[0] Sair\n")
 
 
-telaCromprador :: IO()
-telaCromprador = do
+---------------------MENU COMPRADOR---------------------------------------------
+
+
+telaComprador :: IO()
+telaComprador = do
     putStrLn("----MERCADO FACIL|Comprador|----")
     putStrLn("\nO que deseja fazer?")
     putStrLn("[1] Buscar um produto")
-    putStrLn("[2] Ver superMercados Disponiveis")
-    putStrLn("[3] Buscar SuperMercado mais Economico")
+    putStrLn("[2] Ver Mercados Disponiveis")
+    putStrLn("[3] Buscar Mercado mais Economico")
     putStrLn("[0] Sair\n")
 
 
-telaSuperMercado :: IO()
-telaSuperMercado = do
+---------------------MENU MERCADO---------------------------------------------
+
+telaMercado :: IO()
+telaMercado = do
     putStrLn("----MERCADO FACIL|Super-Mercado|----")
     putStrLn("\nO que deseja fazer?")
     putStrLn("[1] Cadastrar um Produto")
@@ -35,17 +44,46 @@ telaSuperMercado = do
     putStrLn("[5] Comparar precos")
     putStrLn("[0] Sair\n")
 
+---------------------MENU ADMIN---------------------------------------------
 
-telaAdmin :: IO()
-telaAdmin = do
+opcoesMenuAdmin :: IO()
+opcoesMenuAdmin = do
     putStrLn("----MERCADO FACIL|Administrador|----")
     putStrLn("\nO que deseja fazer?")
-    putStrLn("[1] Cadastrar um SuperMercado")
-    putStrLn("[2] Cadastrar um Comprador")
-    putStrLn("[3] Remover um SuperMercado")
-    putStrLn("[4] Remover um Comprador")
-
+    putStrLn("[1] Cadastrar um Mercado")
+    putStrLn("[2] Cadastrar um Cliente")
+    putStrLn("[3] Remover um Mercado")
+    putStrLn("[4] Remover um Cliente")
     putStrLn("[0] Sair\n")   
+
+
+---------------------MENU ADMIN MERCADO---------------------------------------------
+
+cadastrarNomeMercado :: IO()
+cadastrarNomeMercado = do
+    putStrLn("\n-----CADASTRE O NOME-----")
+
+
+cadastrarCnpj :: IO()
+cadastrarCnpj = do
+    putStrLn("\n-----CADASTRE O CNPJ-----")
+
+---------------------MENU ADMIN CLIENTE---------------------------------------------
+cadastrarNomeCliente :: IO()
+cadastrarNomeCliente = do
+    putStrLn("\n-----CADASTRE O NOME-----")
+
+
+cadastrarCpf :: IO()
+cadastrarCpf = do
+    putStrLn("\n-----CADASTRE O CPF-----")
+
+
+------------------------------------------------------------------------------------
+
+operacaoSucesso :: IO()
+operacaoSucesso = do
+    putStrLn("\n-----OPERAÇÃO REALIZADA COM SUCESSO-----\n")
 
 
 telaSair :: IO()
