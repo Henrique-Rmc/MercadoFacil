@@ -43,17 +43,41 @@ compradorSelecionado opcao
 cmdMercado :: IO()
 cmdMercado = do
     Menus.telaMercado
-    opcaoAdm <- getLine
-    print opcaoAdm
+    opcao <- Util.lerString
+    mercadoSelecionado opcao
 
 mercadoSelecionado :: String -> IO()
 mercadoSelecionado opcao 
-    |opcao == "1" = putStrLn("----Cadastrando um Produto....----")
+    |opcao == "1" = telaCadastraProduto
     |opcao == "2" = putStrLn("----Buscando Produto......----")
     |opcao == "3" = putStrLn("----Aplicar desconto em Produto.....----")
     |opcao == "4" = putStrLn("----Aplicar desconto em Secao....----")
     |opcao == "5" = putStrLn("----Comparar precos....----")
     |otherwise = cmdPrincipal
+
+telaCadastraProduto :: IO()
+telaCadastraProduto = do
+    Menus.cadastraProduto
+    cnpj <- Util.lerString
+    Menus.cadastraNomeProduto
+    nome <- Util.lerString
+    Menus.cadastraValorProduto
+    valor <- Util.lerString
+    Menus.cadastraMarcaProduto
+    marca <- Util.lerString
+    Menus.cadastraValidadeProduto
+    validade <- Util.lerString
+    Menus.cadastraCategoriaProduto
+    categoria <- Util.lerString
+    Menus.cadastraQuantidadeProduto
+    quantidade <- Util.lerString
+
+    let produto = cnpj ++ "," ++ nome ++ "," ++ valor ++ "," ++ marca ++ "," ++ validade ++ "," ++ categoria ++ "," ++ quantidade ++ "\n"
+    appendFile "data/produtos.txt" (produto)
+
+    Menus.operacaoSucesso
+    cmdMercado
+
 ---------------------MENU ADMIN---------------------------------------------
 
 

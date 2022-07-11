@@ -42,7 +42,37 @@ telaMercado = do
     putStrLn("[3] Aplicar desconto em Produto")
     putStrLn("[4] Aplicar desconto em Secao")
     putStrLn("[5] Comparar precos")
+    putStrLn("[6] Listar Meus Produtos")
     putStrLn("[0] Sair\n")
+
+cadastraProduto :: IO()
+cadastraProduto = do
+    putStrLn("Insira o cnpj do seu Estabelecimento\n")
+
+cadastraNomeProduto :: IO()
+cadastraNomeProduto = do
+    putStrLn("Insira o nome do seu Produto\n")
+
+cadastraValorProduto :: IO()
+cadastraValorProduto = do
+    putStrLn("Insira o valor do seu Produto\n")
+
+cadastraMarcaProduto :: IO()
+cadastraMarcaProduto = do
+    putStrLn("Insira a marca do seu Produto\n")
+
+cadastraValidadeProduto :: IO()
+cadastraValidadeProduto = do
+    putStrLn("Insira o ano de validade do seu Produto\n")
+
+cadastraCategoriaProduto :: IO()
+cadastraCategoriaProduto = do
+    putStrLn("Insira a categoria do seu Produto\n")
+
+cadastraQuantidadeProduto :: IO()
+cadastraQuantidadeProduto = do
+    putStrLn("Insira a quantidade do seu Produto\n")
+
 
 ---------------------MENU ADMIN---------------------------------------------
 

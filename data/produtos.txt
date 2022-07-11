@@ -1,0 +1,2 @@
+111,sabao,2,omo,2023,limpeza,10
+111,detergente,6,minuano,2023,limpeza,20
