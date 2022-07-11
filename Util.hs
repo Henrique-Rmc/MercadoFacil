@@ -7,22 +7,20 @@ lerString = do
     x <- getLine
     return x
 
---opVaga
 geraLista :: String -> [[String]] -> [[String]]
 geraLista _ [] = []
-geraLista v (x:xs) | (aux v x) == True = geraLista v xs
-                   | otherwise = x:geraLista v xs
+geraLista n (x:xs) | (aux n x) == True = geraLista n xs
+                   | otherwise = x:geraLista n xs
 
 aux :: String -> [String] -> Bool
-aux v (x:xs) = (v == x)
+aux a (x:xs) = (a == x)
 
---primeira
+
 getHead :: [[String]] -> String
 getHead [] = ""
 getHead (x:xs) = head x ++ "," ++ (x !! 1) ++ "\n" ++ getHead xs
 
 
---- FUNÇÕES QUE ESCREVEM NO ARQUIVO ---
 subrescreveHeadCliente :: String -> IO()
 subrescreveHeadCliente h = do
     arq <- openFile "data/clientes.txt" WriteMode
@@ -32,10 +30,10 @@ subrescreveHeadCliente h = do
 
 
 subrescreveHeadMercado :: String -> IO()
-subrescreveHeadMercado n = do
+subrescreveHeadMercado h = do
 
     arq <- openFile "data/mercados.txt" WriteMode
-    hPutStr arq n
+    hPutStr arq h
     hFlush arq
     hClose arq
 

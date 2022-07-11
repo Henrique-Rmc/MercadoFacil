@@ -68,7 +68,7 @@ adminSelecionado opcao
     |opcao == "1" = telaCadastraMercado
     |opcao == "2" = telaCadastraCliente
     |opcao == "3" = telaRemoveMercado
---    |opcao == "2" = removeCromprador
+    |opcao == "4" = telaRemoveCliente
     |otherwise = cmdPrincipal
 
 ---------------------CADASTRO DE MERCADO---------------------------------------------
@@ -127,6 +127,29 @@ telaCadastraCliente = do
     appendFile "data/clientes.txt" (cliente)
 
     Menus.operacaoSucesso
+    cmdAdmin
+
+--REMOVENDO Cliente
+
+telaRemoveCliente :: IO()
+telaRemoveCliente = do
+
+    file <- openFile "data/clientes.txt" ReadMode
+    xs <- getLines file
+    let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+
+    putStr("\nEscolha o CPF do Cliente cadastrado que deseja remover\n")
+    print (lista)
+
+    cpf <- Util.lerString
+
+    let clientes = Util.getHead (Util.geraLista cpf lista)
+    Util.subrescreveHeadCliente ""
+
+    appendFile "data/clientes.txt" (clientes)
+
+    Menus.operacaoSucesso
+
     cmdAdmin
 
 ------------------------------------------------------------------
