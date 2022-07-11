@@ -69,6 +69,8 @@ adminSelecionado opcao
     |opcao == "2" = telaCadastraCliente
     |opcao == "3" = telaRemoveMercado
     |opcao == "4" = telaRemoveCliente
+    |opcao == "5" = telaListaMercados
+    |opcao == "6" = telaListaClientes
     |otherwise = cmdPrincipal
 
 ---------------------CADASTRO DE MERCADO---------------------------------------------
@@ -150,6 +152,28 @@ telaRemoveCliente = do
 
     Menus.operacaoSucesso
 
+    cmdAdmin
+
+
+---------------------LISTA CLIENTES/MERCADOS-----------------------
+
+telaListaClientes :: IO()
+telaListaClientes = do
+    putStr("\nLista de Clientes Cadastrados no Sistema\n")
+    file <- openFile "data/clientes.txt" ReadMode
+    xs <- getLines file
+    let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+    print (lista)
+    cmdAdmin
+
+
+telaListaMercados :: IO()
+telaListaMercados = do
+    putStr("\nLista de Mercados Cadastrados no Sistema\n")
+    file <- openFile "data/mercados.txt" ReadMode
+    xs <- getLines file
+    let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+    print (lista)
     cmdAdmin
 
 ------------------------------------------------------------------

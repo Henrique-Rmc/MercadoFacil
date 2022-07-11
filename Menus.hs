@@ -54,6 +54,8 @@ opcoesMenuAdmin = do
     putStrLn("[2] Cadastrar um Cliente")
     putStrLn("[3] Remover um Mercado")
     putStrLn("[4] Remover um Cliente")
+    putStrLn("[5] Listar Mercados")
+    putStrLn("[6] Listar Clientes")
     putStrLn("[0] Sair\n")   
 
 
