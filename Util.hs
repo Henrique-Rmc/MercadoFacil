@@ -48,3 +48,6 @@ splitLista p s =  case dropWhile p s of
                         "" -> []
                         s' -> w : splitLista p s''
                             where (w, s'') = break p s' 
+
+
+
