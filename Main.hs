@@ -53,30 +53,75 @@ mercadoSelecionado opcao
     |opcao == "3" = putStrLn("----Aplicar desconto em Produto.....----")
     |opcao == "4" = putStrLn("----Aplicar desconto em Secao....----")
     |opcao == "5" = putStrLn("----Comparar precos....----")
+    |opcao == "6" = telaListarMeusProdutos
     |otherwise = cmdPrincipal
 
 telaCadastraProduto :: IO()
 telaCadastraProduto = do
     Menus.cadastraProduto
     cnpj <- Util.lerString
-    Menus.cadastraNomeProduto
-    nome <- Util.lerString
-    Menus.cadastraValorProduto
-    valor <- Util.lerString
-    Menus.cadastraMarcaProduto
-    marca <- Util.lerString
-    Menus.cadastraValidadeProduto
-    validade <- Util.lerString
-    Menus.cadastraCategoriaProduto
-    categoria <- Util.lerString
-    Menus.cadastraQuantidadeProduto
-    quantidade <- Util.lerString
 
-    let produto = cnpj ++ "," ++ nome ++ "," ++ valor ++ "," ++ marca ++ "," ++ validade ++ "," ++ categoria ++ "," ++ quantidade ++ "\n"
-    appendFile "data/produtos.txt" (produto)
+    file <- openFile "data/mercados.txt" ReadMode
+    xs <- getLines file
+    let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
 
-    Menus.operacaoSucesso
+    if not (Util.isValid cnpj lista)
+        then do Menus.cnpjInvalido
+                cmdMercado
+        
+    else do
+        Menus.cadastraNomeProduto
+        nome <- Util.lerString
+        Menus.cadastraValorProduto
+        valor <- Util.lerString
+        Menus.cadastraMarcaProduto
+        marca <- Util.lerString
+        Menus.cadastraValidadeProduto
+        validade <- Util.lerString
+        Menus.cadastraCategoriaProduto
+        categoria <- Util.lerString
+        Menus.cadastraQuantidadeProduto
+        quantidade <- Util.lerString
+    
+
+        let produto = cnpj ++ "," ++ nome ++ "," ++ valor ++ "," ++ marca ++ "," ++ validade ++ "," ++ categoria ++ "," ++ quantidade ++ "\n"
+        appendFile "data/produtos.txt" (produto)
+
+        Menus.operacaoSucesso
+        cmdMercado
+
+
+telaListarMeusProdutos :: IO()
+telaListarMeusProdutos = do
+    Menus.solicitaCnpj
+    cnpj <- Util.lerString
+
+    file <- openFile "data/mercados.txt" ReadMode
+    xs <- getLines file
+    let listaMercados = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+
+    if not (Util.isValid cnpj listaMercados)
+        then do Menus.cnpjInvalido
+                cmdMercado
+    else do
+        file <- openFile "data/produtos.txt" ReadMode
+        xs <- getLines file
+        let listaProdutos = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+
+        let produtos = Util.getHead (Util.geraNovaLista cnpj listaProdutos)
+        Util.subrescreveShowProducts ""
+
+        appendFile "data/showProducts.txt" (produtos)
+
+        file <- openFile "data/showProducts.txt" ReadMode
+        xs <- getLines file
+        let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+        print (lista)
+        Menus.operacaoSucesso
+
     cmdMercado
+
+
 
 ---------------------MENU ADMIN---------------------------------------------
 

@@ -35,7 +35,7 @@ telaComprador = do
 
 telaMercado :: IO()
 telaMercado = do
-    putStrLn("----MERCADO FACIL|Super-Mercado|----")
+    putStrLn("----MERCADO FACIL|Mercado|----")
     putStrLn("\nO que deseja fazer?")
     putStrLn("[1] Cadastrar um Produto")
     putStrLn("[2] Buscar um produto")
@@ -113,9 +113,17 @@ cadastrarCpf = do
 
 ------------------------------------------------------------------------------------
 
+solicitaCnpj :: IO()
+solicitaCnpj = do
+    putStrLn("Insira o cnpj do seu Estabelecimento\n")
+
 operacaoSucesso :: IO()
 operacaoSucesso = do
     putStrLn("\n-----OPERAÇÃO REALIZADA COM SUCESSO-----\n")
+
+cnpjInvalido :: IO()
+cnpjInvalido = do
+    putStrLn("\n-----NÃO EXISTE NENHUM MERCADO COM O CNPJ PASSADO-----\n")
 
 
 telaSair :: IO()

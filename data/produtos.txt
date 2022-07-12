@@ -1,2 +1,4 @@
 111,sabao,2,omo,2023,limpeza,10
 111,detergente,6,minuano,2023,limpeza,20
+111,shampoo,12.5,elseve,2023,higiene,34
+333,sanitaria,10.4,veja,2023,limpeza,10
