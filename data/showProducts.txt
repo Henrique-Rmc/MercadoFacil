@@ -1,3 +1,1 @@
-111,sabao
-111,detergente
-111,shampoo
+333,sanitaria,10.4,veja,2023,limpeza

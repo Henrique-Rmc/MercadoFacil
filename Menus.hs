@@ -125,6 +125,10 @@ cnpjInvalido :: IO()
 cnpjInvalido = do
     putStrLn("\n-----NÃO EXISTE NENHUM MERCADO COM O CNPJ PASSADO-----\n")
 
+cnpjJaExiste :: IO()
+cnpjJaExiste = do
+    putStrLn("\n-----JÁ EXISTE UM MERCADO COM O CNPJ CADASTRADO-----\n")
+
 
 telaSair :: IO()
 telaSair = do

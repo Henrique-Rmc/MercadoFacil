@@ -62,7 +62,7 @@ telaCadastraProduto = do
     cnpj <- Util.lerString
 
     file <- openFile "data/mercados.txt" ReadMode
-    xs <- getLines file
+    xs <- Util.getLines file
     let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
 
     if not (Util.isValid cnpj lista)
@@ -97,7 +97,7 @@ telaListarMeusProdutos = do
     cnpj <- Util.lerString
 
     file <- openFile "data/mercados.txt" ReadMode
-    xs <- getLines file
+    xs <- Util.getLines file
     let listaMercados = ((Data.List.map (Util.splitLista(==',') ) (xs)))
 
     if not (Util.isValid cnpj listaMercados)
@@ -105,16 +105,16 @@ telaListarMeusProdutos = do
                 cmdMercado
     else do
         file <- openFile "data/produtos.txt" ReadMode
-        xs <- getLines file
+        xs <- Util.getLines file
         let listaProdutos = ((Data.List.map (Util.splitLista(==',') ) (xs)))
 
-        let produtos = Util.getHead (Util.geraNovaLista cnpj listaProdutos)
+        let produtos = Util.getListaProdutosTxt (Util.geraNovaLista cnpj listaProdutos)
         Util.subrescreveShowProducts ""
 
         appendFile "data/showProducts.txt" (produtos)
 
         file <- openFile "data/showProducts.txt" ReadMode
-        xs <- getLines file
+        xs <- Util.getLines file
         let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
         print (lista)
         Menus.operacaoSucesso
@@ -146,36 +146,45 @@ adminSelecionado opcao
 
 telaCadastraMercado :: IO()
 telaCadastraMercado = do
-    Menus.cadastrarNomeMercado
-    nome <- Util.lerString
+
 
     Menus.cadastrarCnpj
     cnpj <- Util.lerString
 
-    let mercado = cnpj ++ "," ++ nome ++ "\n"
-    appendFile "data/mercados.txt" (mercado)
+    file <- openFile "data/mercados.txt" ReadMode
+    xs <- getLines file
+    let listaMercados = ((Data.List.map (Util.splitLista(==',') ) (xs)))
 
-    Menus.operacaoSucesso
-    cmdAdmin
+    if (Util.isValid cnpj listaMercados)
+        then do Menus.cnpjJaExiste
+                cmdAdmin
 
---REMOVENDO MERCADO
-getLines :: Handle -> IO [String]
-getLines m = hGetContents m >>= return . lines
+    else do
+        Menus.cadastrarNomeMercado
+        nome <- Util.lerString
+    
+
+        let mercado = cnpj ++ "," ++ nome ++ "\n"
+        appendFile "data/mercados.txt" (mercado)
+
+        Menus.operacaoSucesso
+        cmdAdmin
+
+
 
 
 telaRemoveMercado :: IO()
 telaRemoveMercado = do
 
     file <- openFile "data/mercados.txt" ReadMode
-    xs <- getLines file
-    let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+    xs <- Util.getLines file
+    let listaMercados = ((Data.List.map (Util.splitLista(==',') ) (xs)))
 
     putStr("\nEscolha o CNPJ do Mercado cadastrado que deseja remover\n")
-    print (lista)
-
+    print (listaMercados)
     cnpj <- Util.lerString
 
-    let mercados = Util.getHead (Util.geraLista cnpj lista)
+    let mercados = Util.getListaMercadosTxt (Util.geraLista cnpj listaMercados)
     Util.subrescreveHeadMercado ""
 
     appendFile "data/mercados.txt" (mercados)
@@ -206,7 +215,7 @@ telaRemoveCliente :: IO()
 telaRemoveCliente = do
 
     file <- openFile "data/clientes.txt" ReadMode
-    xs <- getLines file
+    xs <- Util.getLines file
     let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
 
     putStr("\nEscolha o CPF do Cliente cadastrado que deseja remover\n")
@@ -214,7 +223,7 @@ telaRemoveCliente = do
 
     cpf <- Util.lerString
 
-    let clientes = Util.getHead (Util.geraLista cpf lista)
+    let clientes = Util.getListaMercadosTxt (Util.geraLista cpf lista)
     Util.subrescreveHeadCliente ""
 
     appendFile "data/clientes.txt" (clientes)
@@ -230,7 +239,7 @@ telaListaClientes :: IO()
 telaListaClientes = do
     putStr("\nLista de Clientes Cadastrados no Sistema\n")
     file <- openFile "data/clientes.txt" ReadMode
-    xs <- getLines file
+    xs <- Util.getLines file
     let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
     print (lista)
     cmdAdmin
@@ -240,15 +249,11 @@ telaListaMercados :: IO()
 telaListaMercados = do
     putStr("\nLista de Mercados Cadastrados no Sistema\n")
     file <- openFile "data/mercados.txt" ReadMode
-    xs <- getLines file
+    xs <- Util.getLines file
     let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
     print (lista)
     cmdAdmin
 
-------------------------------------------------------------------
-telaSair :: IO()
-telaSair = do
-    putStrLn("----Volte sempre ao MERCADO FACIL :D----")
 ----------------------------------------------------------------------------------
 
 main :: IO()

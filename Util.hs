@@ -21,9 +21,14 @@ aux a (x:xs) = (a == x)
 
 
 --Gera a lista txt que vai ser usada para substituir a lista inicial da qual removemos o elemento desejado
-getHead :: [[String]] -> String
-getHead [] = ""
-getHead (x:xs) = head x ++ "," ++ (x !! 1) ++ "\n" ++ getHead xs
+getListaMercadosTxt :: [[String]] -> String
+getListaMercadosTxt [] = ""
+getListaMercadosTxt (x:xs) = head x ++ "," ++ (x !! 1) ++ "\n" ++ getListaMercadosTxt xs
+
+
+getListaProdutosTxt :: [[String]] -> String
+getListaProdutosTxt [] = ""
+getListaProdutosTxt (x:xs) = head x ++ "," ++ (x !! 1) ++ "," ++ (x !! 2) ++ "," ++ (x !! 3) ++ "," ++ (x !! 4) ++ "," ++ (x !! 5) ++ "\n" ++ getListaProdutosTxt xs
 
 --Sobrescreve o Arquivo existente com o novo arquivo gerado
 subrescreveHeadCliente :: String -> IO()
@@ -78,4 +83,6 @@ geraNovaLista n (x:xs) | (aux n x) == False = geraNovaLista n xs
 
 
 
-
+--REMOVENDO MERCADO
+getLines :: Handle -> IO [String]
+getLines m = hGetContents m >>= return . lines
