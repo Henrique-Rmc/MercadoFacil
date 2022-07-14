@@ -2,3 +2,5 @@
 111,detergente,6,minuano,2023,limpeza,20
 111,shampoo,12.5,elseve,2023,higiene,34
 333,sanitaria,10.4,veja,2023,limpeza,10
+111,detergente,5.5,minuano,2022,limpeza,20
+123,detergente,4.9,omo,2024,limpeza,10

@@ -1,3 +1,6 @@
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Redundant bracket" #-}
+{-# HLINT ignore "Redundant ==" #-}
 module Util where
 import System.IO
 import Data.List 
@@ -14,7 +17,14 @@ lerString = do
 geraLista :: String -> [[String]] -> [[String]]
 geraLista _ [] = []
 geraLista n (x:xs) | (aux n x) == True = geraLista n xs
-                   | otherwise = x:geraLista n xs                   
+                   | otherwise = x:geraLista n xs             
+                   
+                   
+--O Método geraLista recebe uma String e uma Lista de Listas de Strings que 
+geraListaPorNome :: String -> [[String]] -> [[String]]
+geraListaPorNome _ [] = []
+geraListaPorNome n (x:xs) | (auxProduto n (x !! 1)) == False = geraListaPorNome n xs
+                   | otherwise = x:geraListaPorNome n xs   
 
 --Recebe uma String e uma Lista de Strings.Compara a String com cada elemento da Lista inserindo-os em uma nova lista caso não sejam a String passada
 geraNovaLista :: String -> [[String]] -> [[String]]
@@ -25,6 +35,17 @@ geraNovaLista n (x:xs) | (aux n x) == False = geraNovaLista n xs
 --Um método que serve de Auxilio em métodos comparativos. Essa estrutura recebe uma String e uma lista de 1 String, compara ambas e retorna se é True ou False
 aux:: String -> [String] -> Bool
 aux n (x:xs) = (n == x)
+
+
+auxProduto:: String -> String -> Bool
+auxProduto n x= (n == x )
+
+
+--Recebe uma String e uma lista de Strings. Valida se a String passada se encontra na lista e retorna True ou False
+isValidFull :: String -> [[String]] -> Bool
+isValidFull _ [] = False
+isValidFull n (x:xs) | ((auxProduto n (x!!1)) == False) = isValidFull n xs
+                   | otherwise = True
 
 
 --Recebe uma String e uma lista de Strings. Valida se a String passada se encontra na lista e retorna True ou False

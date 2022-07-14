@@ -48,16 +48,15 @@ telaListarProdutosPorNome = do
     file <- openFile "data/produtos.txt" ReadMode
     xs <- Util.getLines file
     let listaTodosProdutos = ((Data.List.map (Util.splitLista(==',') ) (xs)))
-
     Menus.solicitaNomeProduto
     nomeProduto <- Util.lerString
 
-    if not (Util.isValid nomeProduto listaTodosProdutos)
+    if not (Util.isValidFull nomeProduto listaTodosProdutos)
         then do Menus.nomeProdutoInvalido
                 cmdComprador
 
     else do 
-        let produtos = Util.getListaProdutosTxt (Util.geraLista nomeProduto listaTodosProdutos)
+        let produtos = Util.getListaProdutosTxt (Util.geraListaPorNome nomeProduto listaTodosProdutos)
         Util.subrescreveShowProducts ""
 
         appendFile "data/showProducts.txt" (produtos)
