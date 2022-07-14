@@ -10,27 +10,50 @@ lerString = do
     x <- getLine
     return x
 
---Cria uma nova lista removendo o item desejado
+--O Método geraLista recebe uma String e uma Lista de Listas de Strings que 
 geraLista :: String -> [[String]] -> [[String]]
 geraLista _ [] = []
 geraLista n (x:xs) | (aux n x) == True = geraLista n xs
-                   | otherwise = x:geraLista n xs
+                   | otherwise = x:geraLista n xs                   
 
-aux :: String -> [String] -> Bool
-aux a (x:xs) = (a == x)
+--Recebe uma String e uma Lista de Strings.Compara a String com cada elemento da Lista inserindo-os em uma nova lista caso não sejam a String passada
+geraNovaLista :: String -> [[String]] -> [[String]]
+geraNovaLista _ [] = []
+geraNovaLista n (x:xs) | (aux n x) == False = geraNovaLista n xs
+                   | otherwise = x:geraNovaLista n xs
+
+--Um método que serve de Auxilio em métodos comparativos. Essa estrutura recebe uma String e uma lista de 1 String, compara ambas e retorna se é True ou False
+aux:: String -> [String] -> Bool
+aux n (x:xs) = (n == x)
 
 
---Gera a lista txt que vai ser usada para substituir a lista inicial da qual removemos o elemento desejado
+--Recebe uma String e uma lista de Strings. Valida se a String passada se encontra na lista e retorna True ou False
+isValid :: String -> [[String]] -> Bool
+isValid _ [] = False
+isValid n (x:xs) | ((aux n x) == False) = isValid n xs
+                   | otherwise = True
+
+
+--Metodos GetListTxt geram a lista txt que vai ser usada para substituir a lista inicial da qual removemos o elemento desejado
+-----------------------------------------------------------------
 getListaMercadosTxt :: [[String]] -> String
 getListaMercadosTxt [] = ""
 getListaMercadosTxt (x:xs) = head x ++ "," ++ (x !! 1) ++ "\n" ++ getListaMercadosTxt xs
+
 
 
 getListaProdutosTxt :: [[String]] -> String
 getListaProdutosTxt [] = ""
 getListaProdutosTxt (x:xs) = head x ++ "," ++ (x !! 1) ++ "," ++ (x !! 2) ++ "," ++ (x !! 3) ++ "," ++ (x !! 4) ++ "," ++ (x !! 5) ++ "\n" ++ getListaProdutosTxt xs
 
---Sobrescreve o Arquivo existente com o novo arquivo gerado
+
+
+
+-----------------------------------------------------------------
+
+
+--Métodos Subscreve servem para limpar o arquivo TXT que pretendemos alterar para inserirmos os novos métodos
+-----------------------------------------------------------------
 subrescreveHeadCliente :: String -> IO()
 subrescreveHeadCliente h = do
     arq <- openFile "data/clientes.txt" WriteMode
@@ -52,8 +75,9 @@ subrescreveShowProducts h = do
     hPutStr arq h
     hFlush arq
     hClose arq
+-----------------------------------------------------------------
 
-
+--É uma função que recebe um char e uma String. Quando o Char é encontrado na String ele é quebrado e 
 splitLista :: (Char -> Bool) -> String -> [String]
 splitLista p s =  case dropWhile p s of
                         "" -> []
@@ -61,28 +85,6 @@ splitLista p s =  case dropWhile p s of
                             where (w, s'') = break p s' 
 
 
---
-isValid :: String -> [[String]] -> Bool
-isValid _ [] = False
-isValid n (x:xs) | ((auxComp n x) == False) = isValid n xs
-                   | otherwise = True
-
-
-
-auxComp :: String -> [String] -> Bool
-auxComp n (x:xs) = (n == x)
-
-
-
---Cria uma nova lista removendo o item desejado
-geraNovaLista :: String -> [[String]] -> [[String]]
-geraNovaLista _ [] = []
-geraNovaLista n (x:xs) | (aux n x) == False = geraNovaLista n xs
-                   | otherwise = x:geraNovaLista n xs
-
-
-
-
---REMOVENDO MERCADO
+--Acessa o Txt que contém os dados buscados.
 getLines :: Handle -> IO [String]
 getLines m = hGetContents m >>= return . lines
