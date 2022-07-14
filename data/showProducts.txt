@@ -1,3 +1,2 @@
-111,detergente,6,minuano,2023,limpeza
-111,detergente,5.5,minuano,2022,limpeza
-123,detergente,4.9,omo,2024,limpeza
+333,sanitaria,10.4,veja,2023,limpeza
+123,sanitaria,10.4,diabo,2023,limpeza

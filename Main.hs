@@ -36,10 +36,22 @@ cmdComprador = do
 compradorSelecionado :: String -> IO()
 compradorSelecionado opcao 
     |opcao == "1" = telaListarProdutosPorNome
-    |opcao == "2" = putStrLn("----Listando Mercados----")
+    |opcao == "2" = telaListaMercadosComprador
     |opcao == "3" = putStrLn("----Buscando Mercado Economico----")
+    |opcao == "4" = telaListaProdutosPorMercado
     |otherwise = cmdComprador
 
+
+telaListaMercadosComprador :: IO()
+telaListaMercadosComprador = do
+    putStr("\nLista de Mercados Cadastrados no Sistema\n")
+    file <- openFile "data/mercados.txt" ReadMode
+    xs <- Util.getLines file
+    let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+    print (lista)
+
+    
+    cmdComprador
 
 telaListarProdutosPorNome :: IO()
 telaListarProdutosPorNome = do
@@ -67,6 +79,36 @@ telaListarProdutosPorNome = do
         print (lista)
         Menus.operacaoSucesso
         cmdComprador
+
+telaListaProdutosPorMercado :: IO()
+telaListaProdutosPorMercado = do
+    Menus.solicitaCnpj
+    cnpj <- Util.lerString
+
+    file <- openFile "data/mercados.txt" ReadMode
+    xs <- Util.getLines file
+    let listaMercados = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+
+    if not (Util.isValid cnpj listaMercados)
+        then do Menus.cnpjInvalido 
+            
+    else do
+        file <- openFile "data/produtos.txt" ReadMode
+        xs <- Util.getLines file
+        let listaProdutos = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+
+        let produtos = Util.getListaProdutosTxt (Util.geraNovaLista cnpj listaProdutos)
+        Util.subrescreveShowProducts ""
+
+        appendFile "data/showProducts.txt" (produtos)
+
+        file <- openFile "data/showProducts.txt" ReadMode
+        xs <- Util.getLines file
+        let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+        print (lista)
+        Menus.operacaoSucesso
+
+    cmdComprador
 
 
 ----------------------MENU MERCADO--------------------------------------------
@@ -97,7 +139,7 @@ telaCadastraProduto = do
 
     if not (Util.isValid cnpj lista)
         then do Menus.cnpjInvalido
-                cmdMercado
+        
         
     else do
         Menus.cadastraNomeProduto
@@ -118,7 +160,8 @@ telaCadastraProduto = do
         appendFile "data/produtos.txt" (produto)
 
         Menus.operacaoSucesso
-        cmdMercado
+
+    cmdMercado
 
 
 telaListarMeusProdutos :: IO()
