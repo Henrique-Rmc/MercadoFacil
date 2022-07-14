@@ -30,14 +30,46 @@ usuarioSelecionado opcao
 cmdComprador :: IO()
 cmdComprador = do
     Menus.telaComprador
-    compradorSelecionado "1"
+    opcao <- getLine
+    compradorSelecionado opcao
 
 compradorSelecionado :: String -> IO()
 compradorSelecionado opcao 
-    |opcao == "1" = putStrLn("----Buscando Produto----")
+    |opcao == "1" = telaListarProdutosPorNome
     |opcao == "2" = putStrLn("----Listando Mercados----")
     |opcao == "3" = putStrLn("----Buscando Mercado Economico----")
-    |otherwise = cmdPrincipal
+    |otherwise = cmdComprador
+
+
+telaListarProdutosPorNome :: IO()
+telaListarProdutosPorNome = do
+    Menus.produtosCadastrados
+
+    file <- openFile "data/produtos.txt" ReadMode
+    xs <- Util.getLines file
+    let listaTodosProdutos = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+
+    Menus.solicitaNomeProduto
+    nomeProduto <- Util.lerString
+
+    if not (Util.isValid nomeProduto listaTodosProdutos)
+        then do Menus.nomeProdutoInvalido
+                cmdComprador
+
+    else do 
+        let produtos = Util.getListaProdutosTxt (Util.geraLista nomeProduto listaTodosProdutos)
+        Util.subrescreveShowProducts ""
+
+        appendFile "data/showProducts.txt" (produtos)
+
+        file <- openFile "data/showProducts.txt" ReadMode
+        xs <- Util.getLines file
+        let lista = ((Data.List.map (Util.splitLista(==',') ) (xs)))
+        print (lista)
+        Menus.operacaoSucesso
+        cmdComprador
+
+
 ----------------------MENU MERCADO--------------------------------------------
 
 cmdMercado :: IO()
@@ -49,11 +81,10 @@ cmdMercado = do
 mercadoSelecionado :: String -> IO()
 mercadoSelecionado opcao 
     |opcao == "1" = telaCadastraProduto
-    |opcao == "2" = putStrLn("----Buscando Produto......----")
+    |opcao == "2" = telaListarMeusProdutos
     |opcao == "3" = putStrLn("----Aplicar desconto em Produto.....----")
     |opcao == "4" = putStrLn("----Aplicar desconto em Secao....----")
     |opcao == "5" = putStrLn("----Comparar precos....----")
-    |opcao == "6" = telaListarMeusProdutos
     |otherwise = cmdPrincipal
 
 telaCadastraProduto :: IO()

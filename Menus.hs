@@ -25,10 +25,18 @@ telaComprador :: IO()
 telaComprador = do
     putStrLn("----MERCADO FACIL|Comprador|----")
     putStrLn("\nO que deseja fazer?")
-    putStrLn("[1] Buscar um produto")
+    putStrLn("[1] Buscar um produto por Nome")
     putStrLn("[2] Ver Mercados Disponiveis")
     putStrLn("[3] Buscar Mercado mais Economico")
     putStrLn("[0] Sair\n")
+
+solicitaNomeProduto :: IO()
+solicitaNomeProduto = do
+    putStrLn("Insira o nome do produto desejado\n")
+
+produtosCadastrados :: IO()
+produtosCadastrados = do
+    putStrLn("Lista de Todos os Produtos cadastrados\n")
 
 
 ---------------------MENU MERCADO---------------------------------------------
@@ -38,11 +46,11 @@ telaMercado = do
     putStrLn("----MERCADO FACIL|Mercado|----")
     putStrLn("\nO que deseja fazer?")
     putStrLn("[1] Cadastrar um Produto")
-    putStrLn("[2] Buscar um produto")
+    putStrLn("[2] Listar Meus Produtos")
     putStrLn("[3] Aplicar desconto em Produto")
     putStrLn("[4] Aplicar desconto em Secao")
     putStrLn("[5] Comparar precos")
-    putStrLn("[6] Listar Meus Produtos")
+   
     putStrLn("[0] Sair\n")
 
 cadastraProduto :: IO()
@@ -112,6 +120,10 @@ cadastrarCpf = do
 
 
 ------------------------------------------------------------------------------------
+
+nomeProdutoInvalido :: IO()
+nomeProdutoInvalido = do
+    putStrLn("Esse Produto não consta em nosso Sistema, tente novamente\n")
 
 solicitaCnpj :: IO()
 solicitaCnpj = do
