@@ -27,7 +27,8 @@ telaComprador = do
     putStrLn("\nO que deseja fazer?")
     putStrLn("[1] Buscar um produto por Nome")
     putStrLn("[2] Ver Mercados Disponiveis")
-    putStrLn("[3] Buscar Mercado mais Economico")
+    putStrLn("[3] XXXBuscar Mercado mais EconomicoXXX")
+    putStrLn("[4] Buscar produtos por Mercado")
     putStrLn("[0] Sair\n")
 
 solicitaNomeProduto :: IO()
@@ -47,8 +48,8 @@ telaMercado = do
     putStrLn("\nO que deseja fazer?")
     putStrLn("[1] Cadastrar um Produto")
     putStrLn("[2] Listar Meus Produtos")
-    putStrLn("[3] Aplicar desconto em Produto")
-    putStrLn("[4] Aplicar desconto em Secao")
+    putStrLn("[3] XXXXAplicar desconto em ProdutoXXXX")
+    putStrLn("[4] XXXXAplicar desconto em SecaoXXXX")
     putStrLn("[5] Comparar precos")
    
     putStrLn("[0] Sair\n")

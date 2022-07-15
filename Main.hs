@@ -39,7 +39,7 @@ compradorSelecionado opcao
     |opcao == "2" = telaListaMercadosComprador
     |opcao == "3" = putStrLn("----Buscando Mercado Economico----")
     |opcao == "4" = telaListaProdutosPorMercado
-    |otherwise = cmdComprador
+    |otherwise = cmdPrincipal
 
 
 telaListaMercadosComprador :: IO()
