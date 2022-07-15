@@ -1,4 +1,4 @@
-111,sabao,2,omo,2023,limpeza
-111,detergente,6,minuano,2023,limpeza
-111,shampoo,12.5,elseve,2023,higiene
-111,detergente,5.5,minuano,2022,limpeza
+Cnpj Mercado: 123, Nome:  detergente, Valor: 4.9,Marca: omo,Ano de Vencimento: 2024,Setor: limpeza
+
+Cnpj Mercado: 123, Nome:  sanitaria, Valor: 10.4,Marca: diabo,Ano de Vencimento: 2023,Setor: limpeza
+

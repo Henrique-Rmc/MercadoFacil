@@ -59,13 +59,13 @@ isValid n (x:xs) | ((aux n x) == False) = isValid n xs
 -----------------------------------------------------------------
 getListaMercadosTxt :: [[String]] -> String
 getListaMercadosTxt [] = ""
-getListaMercadosTxt (x:xs) = "Cnpj:" ++ head x ++ " Nome:" ++ (x !! 1) ++ "\n" ++ getListaMercadosTxt xs
+getListaMercadosTxt (x:xs) = head x ++ (x !! 1) ++ "\n" ++ getListaMercadosTxt xs
 
 
 
 getListaProdutosTxt :: [[String]] -> String
 getListaProdutosTxt [] = ""
-getListaProdutosTxt (x:xs) = head x ++ "," ++ (x !! 1) ++ "," ++ (x !! 2) ++ "," ++ (x !! 3) ++ "," ++ (x !! 4) ++ "," ++ (x !! 5) ++ "\n" ++ getListaProdutosTxt xs
+getListaProdutosTxt (x:xs) = "Cnpj Mercado: " ++ head x ++ ", Nome:  " ++ (x !! 1) ++ ", Valor: " ++ (x !! 2) ++ ",Marca: " ++ (x !! 3) ++ ",Ano de Vencimento: " ++ (x !! 4) ++ ",Setor: " ++ (x !! 5) ++ "\n" ++ getListaProdutosTxt xs
 
 
 
