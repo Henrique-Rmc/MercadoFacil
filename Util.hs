@@ -59,7 +59,7 @@ isValid n (x:xs) | ((aux n x) == False) = isValid n xs
 -----------------------------------------------------------------
 getListaMercadosTxt :: [[String]] -> String
 getListaMercadosTxt [] = ""
-getListaMercadosTxt (x:xs) = head x ++ (x !! 1) ++ "\n" ++ getListaMercadosTxt xs
+getListaMercadosTxt (x:xs) = head x ++ "," ++ (x !! 1) ++ "\n" ++ getListaMercadosTxt xs
 
 
 

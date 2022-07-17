@@ -5,3 +5,5 @@
 111,detergente,5.5,minuano,2022,limpeza,20
 123,detergente,4.9,omo,2024,limpeza,10
 123,sanitaria,10.4,diabo,2023,limpeza,5
+333,esponja,2.50,bombril,2025,limpeza,20
+333,desinfetante,10.00,limpinho,2023,limpeza,7

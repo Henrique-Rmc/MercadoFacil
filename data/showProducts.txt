@@ -1,4 +1,1 @@
-Cnpj Mercado: 123, Nome:  detergente, Valor: 4.9,Marca: omo,Ano de Vencimento: 2024,Setor: limpeza
-
-Cnpj Mercado: 123, Nome:  sanitaria, Valor: 10.4,Marca: diabo,Ano de Vencimento: 2023,Setor: limpeza
-
+Cnpj Mercado: 111, Nome:  sabao, Valor: 2,Marca: omo,Ano de Vencimento: 2023,Setor: limpeza
