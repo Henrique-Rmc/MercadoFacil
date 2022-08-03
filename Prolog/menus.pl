@@ -19,3 +19,15 @@ nomeProduto:-
 
 valorProduto:-
     writeln("\nInforme o valor do produto: ").
+
+cnpjMercado:-
+    writeln("\nInforme o Cnpj do Mercado: ").
+
+setorProduto:-
+    writeln("\nInforme o setor do produto: ").
+
+sucesso:-
+    writeln("\n Operacao realizada com sucesso"). 
+
+meusProdutos:-
+    writeln("\n Lista dos meus Produtos Cadastrados"). 
