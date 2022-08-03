@@ -1,6 +1,7 @@
 :- (initialization main).
 :- include('menus.pl').
 :- include('mercado.pl').
+:- include('cliente.pl').
 
 main:-
     menuPrincipal,
@@ -9,4 +10,5 @@ main:-
     halt.
 
 opcaoSelecionada(1):- loginMercado(L).
+opcaoSelecionada(2):- loginCliente(L).
 

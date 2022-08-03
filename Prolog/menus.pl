@@ -13,6 +13,16 @@ menuMercado:-
     writeln("[2] Listar Produtos "),
     writeln("[0] Sair\n").
 
+
+menuCliente:-
+    writeln("\n-----MENU CLIENTE-----"),
+    writeln("\nEscolha a opcao desejada"),
+    writeln("[1] Listar Produtos"),
+    writeln("[2] Listar Produtos por Cnpj do Mercado"),
+    writeln("[0] Sair\n").
+
+
+
 nomeProduto:-
     writeln("\n-----CADASTRANDO PRODUTO-----"),
     writeln("\nInforme o nome do produto: ").
@@ -28,6 +38,9 @@ setorProduto:-
 
 sucesso:-
     writeln("\n Operacao realizada com sucesso"). 
+
+falhaCnpj:-
+    writeln("\n Falha em achar Cnpj corresopondente"). 
 
 meusProdutos:-
     writeln("\n Lista dos meus Produtos Cadastrados"). 

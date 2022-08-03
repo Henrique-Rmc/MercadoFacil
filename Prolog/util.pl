@@ -30,9 +30,13 @@ isValid(Search, [H|T], R):-(member(Search, H) -> R = true ; isValid(Search, T, R
 %  Exemplo: removegg(111, [[333, Nome, Placa], [111, Nome, Placa]]) -> [111, Nome, Placa]
 
 listaMercadoCnpj(_, [], []).
-listaMercadoCnpj(Cnpj, [H|T], L):- (member(Cnpj, H) -> L = [H|L];
-                                        listaMercadoCnpj(Cnpj, T, L))
+listaMercadoCnpj(Cnpj, [H|T], R):- listaMercadoCnpj(Cnpj, T, L2),
+                                        (member(Cnpj, H)-> R = [H|L2] ; R = L2).
 
+listaMercadoCnpj1(_, [], []).
+listaMercadoCnpj1(Cnpj, [H|T], [H|L2]) :- member(Cnpj, H), listaMercadoCnpj(Cnpj, T, L2);
+                                                            listaMercadoCnpj(Cnpj, T, )
+listaMercadoCnpj1(Cnpj, [_|T], L2):- listaMercadoCnpj(Cnpj, T, L2).
 
 remove(X, [X|T], T).
 remove(X, [H|T], [H|T1]):- remove(X,T,T1).
