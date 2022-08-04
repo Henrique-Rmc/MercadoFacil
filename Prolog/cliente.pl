@@ -2,7 +2,7 @@
 :- include('menus.pl').
 :- include('util.pl').
 
-loginCliente(X):-
+loginCliente:-
     menuCliente,
     read(Op),
     opcaoCliente(Op),

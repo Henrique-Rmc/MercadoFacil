@@ -2,10 +2,13 @@
 :- include('menus.pl').
 :- include('util.pl').
 
-loginMercado(X):-
+loginMercado:-
     menuMercado,
+
     read(Op),
+
     opcaoMercado(Op),
+    
     halt.
 
 opcaoMercado(1):- cadastrandoProduto(X).
@@ -15,7 +18,7 @@ opcaoMercado(3):- menuPrincipal.
 
 cadastrandoProduto(X):-
     cnpjMercado,
-    read(Cnpj),
+    read(Cnpj),         
 
     nomeProduto,
     read(Nome),
@@ -29,7 +32,7 @@ cadastrandoProduto(X):-
     readCsv('produtos.csv', R),
     adicionaProduto(Cnpj, Nome, Valor, Setor),
     sucesso,
-    loginMercado(X).
+    loginMercado.
 
 
 listarProdutos:-

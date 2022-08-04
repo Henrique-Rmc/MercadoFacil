@@ -1,0 +1,3 @@
+acessando a pasta Prolog no terminal, digitar
+
+swipl -f .\main.pl
