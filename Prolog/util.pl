@@ -38,5 +38,9 @@ busca(_, [], []).
 busca(Cnpj, [H|T], R):- busca(Cnpj, T, L2),
                                         (member(Cnpj, H)-> R = [H|L2] ; R = L2).
 
+busca2(_, [], []).
+busca2(Cnpj, [H|T], R):- busca2(Cnpj, T, L2),
+                                        (member(Cnpj, H)-> R = [H|L2] ; R = L2).
+
 remove(X, [X|T], T).
 remove(X, [H|T], [H|T1]):- remove(X,T,T1).

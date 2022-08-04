@@ -1,3 +1,34 @@
 acessando a pasta Prolog no terminal, digitar
 
 swipl -f .\main.pl
+
+backup BD
+
+111,aveia,5.5,alimentos
+111,arroz,5.0,alimentos
+111,feijao,3.5,alimentos
+111,batata,2.0,alimentos
+111,macarrao,5.0,alimentos
+111,detergente,10.0,limpeza
+111,sabao,7.0,limpeza
+111,amaciante,8.5,limpeza
+111,sanitaria,4.9,limpeza
+111,pastaDeDente,2.5,higiene
+111,escova,4.5,higiene
+111,shampoo,4.8,higiene
+111,condicionador,3.3,higiene
+222,arroz,4.99,alimentos
+222,aveia,3.5,alimentos
+222,arroz,2.0,alimentos
+222,feijao,4.5,alimentos
+222,sabao,3.2,limpeza
+222,detergente,8.0,limpeza
+222,sabao,5.0,limpeza
+222,amaciante,9.5,limpeza
+222,sanitaria,5.2,limpeza
+222,escova,5.5,higiene
+222,shampoo,5.0,higiene
+222,condicionador,3.5,higiene
+333,passas,3.6,alimentos
+333,cebola,alimentos
+333,vidrex,limpeza

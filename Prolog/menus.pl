@@ -26,11 +26,11 @@ menuCliente:-
     writeln("[6] Listar Produtos por Cnpj do Mercado"),
     writeln("[0] Sair\n").
 
-buscaNomeProduto:-
+recebeNomeProduto:-
     writeln("\nInforme o nome do produto: ").
 
 
-buscaSetorProduto:-
+recebeSetorProduto:-
     writeln("\nInforme o setor dos produtos que deseja buscar: ").
 
 

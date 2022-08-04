@@ -2,9 +2,6 @@
 :- include('menus.pl').
 :- include('util.pl').
 
-
-
-
 loginCliente:-
     menuCliente,
     read(Op),
@@ -15,7 +12,7 @@ opcaoCliente(1):- listarTodosProdutos.
 opcaoCliente(2):- buscarProdutosCnpj.
 opcaoCliente(3):- buscarProdutosNome.
 opcaoCliente(4):- buscarProdutosSetor.
-opcaoCliente(5):- buscarProdutosCnpjSetor.
+opcaoCliente(5):- buscarSetorPorMercado.
 opcaoCliente(6):- buscarProdutosCnpjNome.
 opcaoCliente(0):- main.
 
@@ -27,7 +24,7 @@ listarTodosProdutos:-
 
 
 buscarProdutosCnpj:-
-    
+
     cnpjMercado,
     read(Cnpj),
 
@@ -39,7 +36,7 @@ buscarProdutosCnpj:-
     loginMercado.
 
 buscarProdutosNome:-
-    buscaNomeProduto,
+    recebeNomeProduto,
     read(Nome),
 
     readCsv('produtos.csv', R),
@@ -50,7 +47,7 @@ buscarProdutosNome:-
     loginCliente.
 
 buscarProdutosSetor:-
-    buscaSetorProduto,
+    recebeSetorProduto,
     read(Setor),
 
     readCsv('produtos.csv', R),
@@ -60,3 +57,16 @@ buscarProdutosSetor:-
     falhaNome),
     loginCliente.
 
+buscarSetorPorMercado:-
+    recebeSetorProduto,
+    read(Setor),
+
+    cnpjMercado,
+    read(Cnpj),
+
+    readCsv('produtos.csv', R),
+    busca(Setor, R, Resposta),
+    busca(Cnpj, Resposta, Lista),
+    (Lista -> writeln(Lista);
+    falhaNome),
+    loginCliente.
