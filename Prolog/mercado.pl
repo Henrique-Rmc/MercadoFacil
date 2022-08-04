@@ -8,12 +8,12 @@ loginMercado:-
     read(Op),
 
     opcaoMercado(Op),
-    
+
     halt.
 
 opcaoMercado(1):- cadastrandoProduto(X).
 opcaoMercado(2):- listarProdutos.
-opcaoMercado(3):- menuPrincipal.
+opcaoMercado(3):- main.
 
 
 cadastrandoProduto(X):-
@@ -41,7 +41,8 @@ listarProdutos:-
 
     readCsv('produtos.csv', R),
 
-    listaMercadoCnpj(Cnpj, R, Resposta),
-    (Resposta -> writeln(Resposta), loginMercado(X);
-    falhaCnpj, loginMercado(Menu)).
+    busca(Cnpj, R, Resposta),
+    (Resposta -> writeln(Resposta);
+    falhaCnpj),
+    loginMercado.
     

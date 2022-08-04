@@ -32,11 +32,10 @@ isValid(Search, [H|T], R):- (member(Search, H) -> R = true ; isValid(Search, T, 
 
 
 
-%  Gera a lista que queremos excluir da lista de lista passada como parâmetro.
-%  Exemplo: removegg(111, [[333, Nome, Placa], [111, Nome, Placa]]) -> [111, Nome, Placa]
+%  Busca Todas as Listas que possuem o valor passado como parâmetro.
 
-listaMercadoCnpj(_, [], []).
-listaMercadoCnpj(Cnpj, [H|T], R):- listaMercadoCnpj(Cnpj, T, L2),
+busca(_, [], []).
+busca(Cnpj, [H|T], R):- busca(Cnpj, T, L2),
                                         (member(Cnpj, H)-> R = [H|L2] ; R = L2).
 
 remove(X, [X|T], T).

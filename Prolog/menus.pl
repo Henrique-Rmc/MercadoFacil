@@ -20,8 +20,18 @@ menuCliente:-
     writeln("\nEscolha a opcao desejada"),
     writeln("[1] Listar todos os Produtos"),
     writeln("[2] Listar Produtos por Cnpj do Mercado"),
+    writeln("[3] Buscar Produtos pelo Nome"),
+    writeln("[4] Buscar Produtos pelo Setor"),
+    writeln("[5] Listar Setor de Um Mercado"),
+    writeln("[6] Listar Produtos por Cnpj do Mercado"),
     writeln("[0] Sair\n").
 
+buscaNomeProduto:-
+    writeln("\nInforme o nome do produto: ").
+
+
+buscaSetorProduto:-
+    writeln("\nInforme o setor dos produtos que deseja buscar: ").
 
 
 nomeProduto:-
@@ -51,3 +61,7 @@ existeCnpj:-
 
 meusProdutos:-
     writeln("\n Lista dos meus Produtos Cadastrados"). 
+
+
+apresentaMercados:-
+    writeln("\n Mercados que voce pode listar os produtos"). 

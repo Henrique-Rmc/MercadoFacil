@@ -11,7 +11,7 @@ cadastrandoMercado:-
     read(Nome),       
     adicionaMercado(Cnpj, Nome),
     sucesso,
-    loginMercado.
+    main.
 
 
 main:-
@@ -24,5 +24,6 @@ main:-
 opcaoSelecionada(1):- loginMercado.
 opcaoSelecionada(2):- loginCliente.    
 opcaoSelecionada(3):- cadastrandoMercado.
+opcaoSelecionada(4):- halt.
 
 
