@@ -24,6 +24,7 @@ menuCliente:-
     writeln("[4] Buscar Produtos pelo Setor"),
     writeln("[5] Listar Setor de Um Mercado"),
     writeln("[6] Listar Produtos por Cnpj do Mercado"),
+    writeln("[7] Buscar Produto mais barato"),
     writeln("[0] Sair\n").
 
 recebeNomeProduto:-
@@ -32,6 +33,9 @@ recebeNomeProduto:-
 
 recebeSetorProduto:-
     writeln("\nInforme o setor dos produtos que deseja buscar: ").
+
+recebeNomeProdutoEconomico:-
+    writeln("\nInforme o Nome do produto para achar o Mercado em que voce vai ter um maior desconto: ").
 
 
 nomeProduto:-

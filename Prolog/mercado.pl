@@ -13,7 +13,7 @@ loginMercado:-
 
 opcaoMercado(1):- cadastrandoProduto(X).
 opcaoMercado(2):- listarProdutos.
-opcaoMercado(3):- main.
+opcaoMercado(0):- main.
 
 
 cadastrandoProduto(X):-
@@ -33,7 +33,7 @@ cadastrandoProduto(X):-
     adicionaProduto(Cnpj, Nome, Valor, Setor),
     sucesso,
     loginMercado.
-
+ 
 
 listarProdutos:-
     cnpjMercado,
