@@ -39,7 +39,7 @@ busca(Valor, [H|T], R):- busca(Valor, T, L2),
                                         (member(Valor, H)-> R = [H|L2] ; R = L2).
 
 buscaEconomica([], Produto, Produto).
-buscaEconomica([Produto|T], [ProdutoMenor], R):-
+buscaEconomica([Produto|T], ProdutoMenor, R):-
     nth0(2, Produto, Preco), nth0(2, ProdutoMenor, PrecoMenor),
     Preco < PrecoMenor, buscaEconomica(T, Produto, R).
 

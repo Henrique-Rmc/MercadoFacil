@@ -19,7 +19,7 @@ main:-
 
     read(Op),
 
-    opcaoSelecionada(Op), halt.
+    opcaoSelecionada(Op).
 
 opcaoSelecionada(1):- loginMercado.
 opcaoSelecionada(2):- loginCliente.    

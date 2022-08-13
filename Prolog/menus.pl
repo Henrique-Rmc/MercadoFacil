@@ -23,8 +23,7 @@ menuCliente:-
     writeln("[3] Buscar Produtos pelo Nome"),
     writeln("[4] Buscar Produtos pelo Setor"),
     writeln("[5] Listar Setor de Um Mercado"),
-    writeln("[6] Listar Produtos por Cnpj do Mercado"),
-    writeln("[7] Buscar Produto mais barato"),
+    writeln("[6] Buscar Produto mais barato"),
     writeln("[0] Sair\n").
 
 recebeNomeProduto:-
