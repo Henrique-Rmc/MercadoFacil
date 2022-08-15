@@ -60,15 +60,13 @@ buscarProdutoBarato:-
     read(Name),
 
     readCsv('produtos.csv', R),
-    busca(Name, R, ListaEspecifica),
-    
-    ListaEspecifica([H|T]),
+    busca(Name, R,[H|T]),
     
     buscaEconomica([H|T], H, MenorPreco),
     
     (MenorPreco -> writeln(MenorPreco);
-    falhaNome),
-    loginCliente.
+    falhaNome).
+
 
 buscarSetorPorMercado:-
     recebeSetorProduto,
