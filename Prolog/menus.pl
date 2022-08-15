@@ -33,8 +33,8 @@ recebeNomeProduto:-
 recebeSetorProduto:-
     writeln("\nInforme o setor dos produtos que deseja buscar: ").
 
-recebeNomeProdutoEconomico:-
-    writeln("\nInforme o Nome do produto para achar o Mercado em que voce vai ter um maior desconto: ").
+recebeProdutoBarato:-
+    writeln("\nInforme o Nome do produto para o melhor mercado:").
 
 
 nomeProduto:-
@@ -68,3 +68,19 @@ meusProdutos:-
 
 apresentaMercados:-
     writeln("\n Mercados que voce pode listar os produtos"). 
+
+listaProdutos([]).
+listaProdutos([[Cnpj, Nome, Valor, Setor]|T]):-
+    writeln("-Cnpj do Mercado:"),writeln(Cnpj),
+    writeln("-NOME: "),writeln(Nome),
+    writeln("-VALOR: "),writeln(Valor),
+    writeln("-SETOR: "), writeln(Setor),
+    writeln("------------------"),
+    listaProdutos(T).
+
+mostraProdutoBarato([Cnpj, Nome, Valor, Setor]):-
+    writeln("-Cnpj do Mercado que possui esse produto com melhor valor:"),writeln(Cnpj),
+    writeln("\n-Nome: "),writeln(Nome),
+    writeln("\n-***MELHOR VALOR!***: "),writeln(Valor),
+    writeln("\n-Setor: "), writeln(Setor),
+    writeln("------------------").

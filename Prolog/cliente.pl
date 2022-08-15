@@ -14,12 +14,13 @@ opcaoCliente(3):- buscarProdutosNome.
 opcaoCliente(4):- buscarProdutosSetor.
 opcaoCliente(5):- buscarSetorPorMercado.
 opcaoCliente(6):- buscarProdutoBarato.
-
+opcaoCliente(0):- main.
 
 listarTodosProdutos:-
     writeln("-----PRODUTOS CADASTRADOS-----"),
     readCsv('produtos.csv', R),
-    writeln(R), loginCliente.
+    listaProdutos(R),
+    loginCliente.
 
 
 buscarProdutosCnpj:-
@@ -30,7 +31,7 @@ buscarProdutosCnpj:-
     readCsv('produtos.csv', R),
 
     busca(Cnpj, R, Resposta),
-    (Resposta -> writeln(Resposta);
+    (Resposta -> listaProdutos(Resposta);
     falhaCnpj),
     loginCliente.
  
@@ -41,7 +42,7 @@ buscarProdutosNome:-
     readCsv('produtos.csv', R),
 
     busca(Nome, R, Resposta),
-    (Resposta -> writeln(Resposta);
+    (Resposta -> listaProdutos(Resposta);
     falhaNome),
     loginCliente.
 
@@ -52,11 +53,12 @@ buscarProdutosSetor:-
     readCsv('produtos.csv', R),
 
     busca(Setor, R, Resposta),
-    (Resposta -> writeln(Resposta);
+    (Resposta -> listaProdutos(Resposta);
     falhaNome),
     loginCliente.
 
 buscarProdutoBarato:-
+    recebeProdutoBarato,
     read(Name),
 
     readCsv('produtos.csv', R),
@@ -64,8 +66,9 @@ buscarProdutoBarato:-
     
     buscaEconomica([H|T], H, MenorPreco),
     
-    (MenorPreco -> writeln(MenorPreco);
-    falhaNome).
+    (MenorPreco -> mostraProdutoBarato(MenorPreco);
+    falhaNome),
+    loginCliente.
 
 
 buscarSetorPorMercado:-
