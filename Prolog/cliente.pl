@@ -25,14 +25,18 @@ listarTodosProdutos:-
 
 buscarProdutosCnpj:-
 
+    readCsv('mercados.csv', M),
+    apresentaMercados,
+    listaCnpjs(M),
+
     cnpjMercado,
     read(Cnpj),
 
     readCsv('produtos.csv', R),
+    isValid(Cnpj,R,Valid),
 
-    busca(Cnpj, R, Resposta),
-    (Resposta -> listaProdutos(Resposta);
-    falhaCnpj),
+    (Valid -> busca(Cnpj, R, Resposta), listaProdutos(Resposta);
+    falhaBuscaEconomica),
     loginCliente.
  
 buscarProdutosNome:-
@@ -40,21 +44,25 @@ buscarProdutosNome:-
     read(Nome),
 
     readCsv('produtos.csv', R),
-
-    busca(Nome, R, Resposta),
-    (Resposta -> listaProdutos(Resposta);
+    isValid(Nome,R,Valid),
+    
+    (Valid -> busca(Nome, R, Resposta), listaProdutos(Resposta);
     falhaNome),
     loginCliente.
 
 buscarProdutosSetor:-
+
+    setoresDisponiveis,
+
     recebeSetorProduto,
     read(Setor),
 
     readCsv('produtos.csv', R),
+    isValid(Setor,R,Valid),
 
-    busca(Setor, R, Resposta),
-    (Resposta -> listaProdutos(Resposta);
-    falhaNome),
+    (Valid -> busca(Setor, R, Resposta), listaProdutos(Resposta);
+    falhaSetor),
+
     loginCliente.
 
 buscarProdutoBarato:-
@@ -62,6 +70,7 @@ buscarProdutoBarato:-
     read(Name),
 
     readCsv('produtos.csv', R),
+
     busca(Name, R,[H|T]),
     
     buscaEconomica([H|T], H, MenorPreco),
@@ -72,6 +81,9 @@ buscarProdutoBarato:-
 
 
 buscarSetorPorMercado:-
+    setoresDisponiveis,
+    
+
     recebeSetorProduto,
     read(Setor),
 

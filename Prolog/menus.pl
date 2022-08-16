@@ -34,7 +34,7 @@ recebeSetorProduto:-
     writeln("\nInforme o setor dos produtos que deseja buscar: ").
 
 recebeProdutoBarato:-
-    writeln("\nInforme o Nome do produto para o melhor mercado:").
+    writeln("\nInforme o Nome do produto que deseja encontrar:").
 
 
 nomeProduto:-
@@ -45,7 +45,7 @@ valorProduto:-
     writeln("\nInforme o valor do produto: ").
 
 cnpjMercado:-
-    writeln("\nInforme o Cnpj do Mercado: ").
+    writeln("\nInforme o Cnpj do Mercado que deseja acessar: ").
 
 nomeMercado:-
     writeln("\nInforme o Nome do Mercado: ").
@@ -59,22 +59,33 @@ sucesso:-
 falhaCnpj:-
     writeln("\n Falha em achar Cnpj corresopondente").
 
+falhaNome:-
+    writeln("\n Falha em achar um Nome corresopondente").
+
+falhaSetor:-
+    writeln("\n Falha em achar o Setor corresopondente").
+
 existeCnpj:-
     writeln("\n Ja existe um mercado com esse Cnpj cadastrado").
+
+falhaBuscaEconomica:-
+    writeln("\n O mercado Buscado não existe ou ainda não possui produtos cadastrados"). 
 
 meusProdutos:-
     writeln("\n Lista dos meus Produtos Cadastrados"). 
 
+setoresDisponiveis:-
+    writeln("\n higiene, limpeza, alimentos"). 
 
 apresentaMercados:-
-    writeln("\n Mercados que voce pode listar os produtos"). 
+    writeln("\n Mercados em nosso sistema"). 
 
 listaProdutos([]).
 listaProdutos([[Cnpj, Nome, Valor, Setor]|T]):-
-    writeln("-Cnpj do Mercado:"),writeln(Cnpj),
-    writeln("-NOME: "),writeln(Nome),
-    writeln("-VALOR: "),writeln(Valor),
-    writeln("-SETOR: "), writeln(Setor),
+    writeln("\n-Cnpj do Mercado:"),writeln(Cnpj),
+    writeln("\n-NOME: "),writeln(Nome),
+    writeln("\n-VALOR: "),writeln(Valor),
+    writeln("\n-SETOR: "), writeln(Setor),
     writeln("------------------"),
     listaProdutos(T).
 
@@ -84,3 +95,10 @@ mostraProdutoBarato([Cnpj, Nome, Valor, Setor]):-
     writeln("\n-***MELHOR VALOR!***: "),writeln(Valor),
     writeln("\n-Setor: "), writeln(Setor),
     writeln("------------------").
+
+listaCnpjs([]).
+listaCnpjs([[Cnpj, Nome]|T]):-
+    writeln("\n-Cnpj do Mercado:"),writeln(Cnpj),
+    writeln("-NOME: "),writeln(Nome),
+    writeln("------------------"),
+    listaCnpjs(T).

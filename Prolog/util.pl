@@ -28,7 +28,8 @@ adicionaMercado(Cnpj, Nome):-
  
 %  Valida se o elemento pertence a lista
 isValid(_, [], false).
-isValid(Search, [H|T], R):- (member(Search, H) -> R = true ; isValid(Search, T, false)).
+isValid(Search, [H|T], R):- (member(Search, H) -> R = true ;
+                            isValid(Search, T, R)).
 
 
 
@@ -47,3 +48,4 @@ buscaEconomica([_|T], ProdutoMenor, R):- buscaEconomica(T, ProdutoMenor, R).
 
 remove(X, [X|T], T).
 remove(X, [H|T], [H|T1]):- remove(X,T,T1).
+
