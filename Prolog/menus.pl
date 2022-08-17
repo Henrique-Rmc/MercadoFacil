@@ -59,6 +59,9 @@ sucesso:-
 falhaCnpj:-
     writeln("\n Falha em achar Cnpj corresopondente").
 
+cadastraCnpj:-
+    writeln("\n Insira o Cnpj do mercado que deseja cadastrar").
+
 falhaNome:-
     writeln("\n Falha em achar um Nome corresopondente").
 
@@ -86,6 +89,8 @@ apresentaMercados:-
 dadosNaoCorrespondentes:-
     writeln("\n Os dados inseridos não correspondem a nenhum dado do sistema"). 
 
+jaCadastrado:-
+    writeln("\n Ja existe um Mercado com esse Cnpj cadastrado no Sistema"). 
 
 listaProdutos([]).
 listaProdutos([[Cnpj, Nome, Valor, Setor]|T]):-

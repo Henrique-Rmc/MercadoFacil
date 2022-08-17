@@ -19,7 +19,7 @@ adicionaProduto(Cnpj, Nome, Valor, Setor):-
     open('./data/produtos.csv', append, Fluxo),
     writeln(Fluxo, (Cnpj, Nome, Valor, Setor)),
     close(Fluxo).
-
+ 
 %  Adiciona o mercado ao arquivo csv de mercados.
 adicionaMercado(Cnpj, Nome):-
     open('./data/mercados.csv', append, Fluxo),

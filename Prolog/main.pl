@@ -4,14 +4,18 @@
 :- include('cliente.pl').
 
 cadastrandoMercado:-
-    cnpjMercado,
+    cadastraCnpj,
     read(Cnpj),   
 
     nomeMercado,
-    read(Nome),       
-    adicionaMercado(Cnpj, Nome),
-    sucesso,
-    main.
+    read(Nome),
+
+    readCsv('mercados.csv', M),
+
+    isValid(Cnpj, M, Valid),
+    (Valid -> jaCadastrado;  
+                adicionaMercado(Cnpj, Nome),
+                sucesso),main.
 
 
 main:-
