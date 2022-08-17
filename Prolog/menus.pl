@@ -62,6 +62,9 @@ falhaCnpj:-
 falhaNome:-
     writeln("\n Falha em achar um Nome corresopondente").
 
+falhaProduto:-
+    writeln("\n Nao foi possivel encontrar um produto correspondente no estoque dos mercados").
+
 falhaSetor:-
     writeln("\n Falha em achar o Setor corresopondente").
 
@@ -75,10 +78,14 @@ meusProdutos:-
     writeln("\n Lista dos meus Produtos Cadastrados"). 
 
 setoresDisponiveis:-
-    writeln("\n higiene, limpeza, alimentos"). 
+    writeln("\n Digite um setor e um mercado: \nhigiene, limpeza, alimentos"). 
 
 apresentaMercados:-
     writeln("\n Mercados em nosso sistema"). 
+
+dadosNaoCorrespondentes:-
+    writeln("\n Os dados inseridos não correspondem a nenhum dado do sistema"). 
+
 
 listaProdutos([]).
 listaProdutos([[Cnpj, Nome, Valor, Setor]|T]):-
@@ -90,7 +97,7 @@ listaProdutos([[Cnpj, Nome, Valor, Setor]|T]):-
     listaProdutos(T).
 
 mostraProdutoBarato([Cnpj, Nome, Valor, Setor]):-
-    writeln("-Cnpj do Mercado que possui esse produto com melhor valor:"),writeln(Cnpj),
+    writeln("\n-Cnpj do Mercado que possui esse produto com melhor valor:"),writeln(Cnpj),
     writeln("\n-Nome: "),writeln(Nome),
     writeln("\n-***MELHOR VALOR!***: "),writeln(Valor),
     writeln("\n-Setor: "), writeln(Setor),
@@ -102,3 +109,4 @@ listaCnpjs([[Cnpj, Nome]|T]):-
     writeln("-NOME: "),writeln(Nome),
     writeln("------------------"),
     listaCnpjs(T).
+
