@@ -13,9 +13,12 @@ cadastrandoMercado:-
     readCsv('mercados.csv', M),
 
     isValid(Cnpj, M, Valid),
-    (Valid -> jaCadastrado;  
-                adicionaMercado(Cnpj, Nome),
-                sucesso),main.
+    (Valid -> jaCadastrado; 
+
+    adicionaMercado(Cnpj, Nome),
+    sucesso),
+    
+    main.
 
 
 main:-

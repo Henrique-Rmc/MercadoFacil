@@ -18,8 +18,13 @@ opcaoMercado(0):- main.
 
 cadastrandoProduto(X):-
     cnpjMercado,
-    read(Cnpj),         
+    read(Cnpj),
 
+    readCsv('mercados.csv', M),
+
+    isValid(Cnpj, M, Valid),
+
+    (Valid ->   
     nomeProduto,
     read(Nome),
 
@@ -31,7 +36,10 @@ cadastrandoProduto(X):-
 
     readCsv('produtos.csv', R),
     adicionaProduto(Cnpj, Nome, Valor, Setor),
-    sucesso,
+    sucesso;
+    falhaCnpj
+    ),
+
     loginMercado.
  
 
