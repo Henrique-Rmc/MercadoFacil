@@ -65,7 +65,16 @@ limpaCsv(Arquivo):-
 
 refazMercado([]).
 refazMercado([H|T]):-
-    nth0(0, H, Cnpj), % Indice 0
-    nth0(1, H, Nome), % Indice 1
+    nth0(0, H, Cnpj),
+    nth0(1, H, Nome),
     adicionaMercado(Cnpj, Nome),
     refazMercado(T).
+
+refazProdutos([]).
+refazProdutos([H|T]):-
+    nth0(0, H, Cnpj),
+    nth0(1, H, Nome),
+    nth0(2, H, Valor),
+    nth0(3, H, Setor),
+    adicionaProduto(Cnpj, Nome, Valor, Setor),
+    refazProdutos(T).
