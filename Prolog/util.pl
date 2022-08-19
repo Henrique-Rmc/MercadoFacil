@@ -50,12 +50,28 @@ buscaEconomica([Produto|T], ProdutoMenor, R):-
 buscaEconomica([_|T], ProdutoMenor, R):- buscaEconomica(T, ProdutoMenor, R).
 
 
+
+
+% Recebe uma Lista e Uma lista de listas que desejamos excluir um dado, ao encontrar o dado ele é removido
 remove(X, [X|T], T).
 remove(X, [H|T], [H|T1]):- remove(X,T,T1).
 
+
+
+
+% Recebe um dado e uma lista e a partir disso busca nas listas a lista que possui um dado correspondente ao dado passado para que seja retornado.
 geraListaExcluida(_, [], []).
-geraListaExcluida(Cnpj, [H|T], R):- (member(Cnpj, H) ->
-                                R = H; geraListaExcluida(Cnpj, T, R)).
+geraListaExcluida(Cnpj, [H|T], R):- (member(Cnpj, H) -> R = H; 
+                                    geraListaExcluida(Cnpj, T, R)).
+
+
+geraListasExcluidas(Cnpj, Produtos, R):- delete(Produtos, [Cnpj|_], R).                                
+
+
+
+
+
+% Limpa o Arquivo CVS que existia previamente para que o novo arquivo ajustado seja inserido.
 
 limpaCsv(Arquivo):-
     atom_concat('./data/', Arquivo, Path),
@@ -63,6 +79,9 @@ limpaCsv(Arquivo):-
     write(Fluxo, ''),
     close(Fluxo).
 
+
+
+% Reconstroi a estrutura de Mercado a partir de uma nova lista que foi criada.
 refazMercado([]).
 refazMercado([H|T]):-
     nth0(0, H, Cnpj),
@@ -70,6 +89,9 @@ refazMercado([H|T]):-
     adicionaMercado(Cnpj, Nome),
     refazMercado(T).
 
+
+
+% Reconstroi a estrutura de Produtos a partir de uma nova lista que foi criada.
 refazProdutos([]).
 refazProdutos([H|T]):-
     nth0(0, H, Cnpj),

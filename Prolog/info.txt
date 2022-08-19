@@ -1,6 +1,9 @@
-acessando a pasta Prolog no terminal, digitar
-
+acessando a pasta Prolog no terminal, para executar com mais facilidade:
 swipl -f .\main.pl
+
+Não realizar ações começando com letra maiúscula
+
+
 
 backup BD
 
@@ -32,3 +35,14 @@ backup BD
 333,passas,3.6,alimentos
 333,cebola,alimentos
 333,vidrex,limpeza
+
+estrutura que estava sendo usada para reajustar a lista de produtos mas não consegui
+fazer a função para remover todos os produtos correspondentes
+
+    readCsv('produtos.csv', P),
+    geraListaExcluida(Cnpj, P, Excluida),
+    remove(Excluida, P, ListaP),
+
+    limpaCsv('produtos.csv'),
+
+    refazProdutos(ListaP),

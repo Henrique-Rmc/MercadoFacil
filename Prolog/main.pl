@@ -36,14 +36,11 @@ excluirMercado:-
     refazMercado(ListaM),
 
     readCsv('produtos.csv', P),
-    geraListaExcluida(Cnpj, P, Excluida),
-    remove(Excluida, P, ListaP),
+    geraListasExcluidas(Cnpj, P, ListaP),
 
     limpaCsv('produtos.csv'),
 
     refazProdutos(ListaP),
-
-
     writeln("Mercado Removido com sucesso");falhaCnpj, main),
 
     main.
