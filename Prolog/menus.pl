@@ -1,8 +1,8 @@
 menuPrincipal:-
     writeln("\n-----MENU PRINCIPAL-----"),
     writeln("\nEscolha a opcao desejada"),
-    writeln("[1] Login Mercado"),
-    writeln("[2] Login Cliente "),
+    writeln("[1] Menu Mercado"),
+    writeln("[2] Menu Cliente "),
     writeln("[3] Cadastrar Mercado "),
     writeln("[0] Sair\n").
 

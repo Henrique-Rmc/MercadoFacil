@@ -12,7 +12,7 @@ loginMercado:-
     halt.
 
 opcaoMercado(1):- cadastrandoProduto(X).
-opcaoMercado(2):- listarProdutos.
+opcaoMercado(2):- listarProdutosCnpj.
 opcaoMercado(0):- main.
 
 
@@ -43,14 +43,15 @@ cadastrandoProduto(X):-
     loginMercado.
  
 
-listarProdutos:-
+listarProdutosCnpj:-
+
     cnpjMercado,
     read(Cnpj),
 
     readCsv('produtos.csv', R),
+    isValid(Cnpj,R,Valid),
 
-    busca(Cnpj, R, Resposta),
-    (Resposta -> writeln(Resposta);
-    falhaCnpj),
+    (Valid -> busca(Cnpj, R, Resposta), listaProdutos(Resposta);
+    falhaBuscaEconomica),
     loginMercado.
     

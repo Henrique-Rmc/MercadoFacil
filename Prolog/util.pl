@@ -39,12 +39,16 @@ busca(_, [], []).
 busca(Valor, [H|T], R):- busca(Valor, T, L2),
                                         (member(Valor, H)-> R = [H|L2] ; R = L2).
 
+
+%  Busca Todas em todas as listas o produto passado que possui o menor valor.
+
 buscaEconomica([], Produto, Produto).
 buscaEconomica([Produto|T], ProdutoMenor, R):-
     nth0(2, Produto, Preco), nth0(2, ProdutoMenor, PrecoMenor),
     Preco < PrecoMenor, buscaEconomica(T, Produto, R).
 
 buscaEconomica([_|T], ProdutoMenor, R):- buscaEconomica(T, ProdutoMenor, R).
+
 
 remove(X, [X|T], T).
 remove(X, [H|T], [H|T1]):- remove(X,T,T1).
