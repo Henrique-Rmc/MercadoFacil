@@ -53,3 +53,19 @@ buscaEconomica([_|T], ProdutoMenor, R):- buscaEconomica(T, ProdutoMenor, R).
 remove(X, [X|T], T).
 remove(X, [H|T], [H|T1]):- remove(X,T,T1).
 
+geraListaExcluida(_, [], []).
+geraListaExcluida(Cnpj, [H|T], R):- (member(Cnpj, H) ->
+                                R = H; geraListaExcluida(Cnpj, T, R)).
+
+limpaCsv(Arquivo):-
+    atom_concat('./data/', Arquivo, Path),
+    open(Path, write, Fluxo),
+    write(Fluxo, ''),
+    close(Fluxo).
+
+refazMercado([]).
+refazMercado([H|T]):-
+    nth0(0, H, Cnpj), % Indice 0
+    nth0(1, H, Nome), % Indice 1
+    adicionaMercado(Cnpj, Nome),
+    refazMercado(T).

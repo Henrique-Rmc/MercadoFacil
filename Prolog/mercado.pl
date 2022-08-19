@@ -11,12 +11,12 @@ loginMercado:-
 
     halt.
 
-opcaoMercado(1):- cadastrandoProduto(X).
+opcaoMercado(1):- cadastrandoProduto.
 opcaoMercado(2):- listarProdutosCnpj.
 opcaoMercado(0):- main.
 
 
-cadastrandoProduto(X):-
+cadastrandoProduto:-
     cnpjMercado,
     read(Cnpj),
 

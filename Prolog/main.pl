@@ -21,6 +21,25 @@ cadastrandoMercado:-
     main.
 
 
+excluirMercado:-
+    writeln("Informe o CNPJ do Mercado a ser excluido: "),
+    read(Cnpj),
+
+    readCsv('mercados.csv', M),
+
+    isValid(Cnpj, M, Valid),
+    (Valid -> geraListaExcluida(Cnpj, M, R),
+    remove(R, M, ListaM),
+
+    limpaCsv('mercados.csv'),
+
+    refazMercado(ListaM),
+    writeln("Mercado Removido com sucesso");falhaCnpj, main),
+
+    main.
+
+
+
 main:-
     menuPrincipal,
 
@@ -31,6 +50,7 @@ main:-
 opcaoSelecionada(1):- loginMercado.
 opcaoSelecionada(2):- loginCliente.    
 opcaoSelecionada(3):- cadastrandoMercado.
-opcaoSelecionada(4):- halt.
+opcaoSelecionada(4):- excluirMercado.
+opcaoSelecionada(0):- halt.
 
 

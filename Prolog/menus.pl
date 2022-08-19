@@ -4,6 +4,7 @@ menuPrincipal:-
     writeln("[1] Menu Mercado"),
     writeln("[2] Menu Cliente "),
     writeln("[3] Cadastrar Mercado "),
+    writeln("[4] Excluir Mercado "),
     writeln("[0] Sair\n").
 
 
