@@ -26,7 +26,7 @@ adicionaMercado(Cnpj, Nome):-
     writeln(Fluxo, (Cnpj, Nome)),
     close(Fluxo).
  
-%  Valida se o elemento pertence a lista
+%  Valida se o elemento pertence a lista.
 isValid(_, [], false).
 isValid(Search, [H|T], R):- (member(Search, H) -> R = true ;
                             isValid(Search, T, R)).
@@ -52,7 +52,7 @@ buscaEconomica([_|T], ProdutoMenor, R):- buscaEconomica(T, ProdutoMenor, R).
 
 
 
-% Recebe uma Lista e Uma lista de listas que desejamos excluir um dado, ao encontrar o dado ele é removido
+% Recebe uma Lista e Uma lista de listas que desejamos excluir um dado, ao encontrar o dado ele é removido.
 remove(X, [X|T], T).
 remove(X, [H|T], [H|T1]):- remove(X,T,T1).
 
@@ -66,9 +66,6 @@ geraListaExcluida(Cnpj, [H|T], R):- (member(Cnpj, H) -> R = H;
 
 
 geraListasExcluidas(Cnpj, Produtos, R):- delete(Produtos, [Cnpj|_], R).                                
-
-
-
 
 
 % Limpa o Arquivo CVS que existia previamente para que o novo arquivo ajustado seja inserido.

@@ -76,7 +76,7 @@ existeCnpj:-
     writeln("\n Ja existe um mercado com esse Cnpj cadastrado").
 
 falhaBuscaEconomica:-
-    writeln("\n O mercado Buscado não existe ou ainda não possui produtos cadastrados"). 
+    writeln("\n O mercado Buscado nao existe ou ainda nao possui produtos cadastrados"). 
 
 meusProdutos:-
     writeln("\n Lista dos meus Produtos Cadastrados"). 

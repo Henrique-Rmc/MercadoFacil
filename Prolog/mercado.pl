@@ -52,6 +52,6 @@ listarProdutosCnpj:-
     isValid(Cnpj,R,Valid),
 
     (Valid -> busca(Cnpj, R, Resposta), listaProdutos(Resposta);
-    falhaBuscaEconomica),
+    falhaCnpj),
     loginMercado.
     

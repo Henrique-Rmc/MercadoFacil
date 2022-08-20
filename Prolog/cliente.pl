@@ -21,8 +21,7 @@ listarTodosProdutos:-
     readCsv('produtos.csv', R),
     listaProdutos(R),
     loginCliente.
-
-
+ 
 buscarProdutosCnpj:-
 
     readCsv('mercados.csv', M),
@@ -98,9 +97,10 @@ buscarSetorPorMercado:-
 
     isValid(Setor,R,SetorValid),
     (SetorValid -> 
+
     apresentaMercados,
     listaCnpjs(M),
-
+    
     cnpjMercado,
     read(Cnpj),
 
